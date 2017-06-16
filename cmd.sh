@@ -131,8 +131,8 @@ else
   createCmd=$(printf "%s --ssh-dest-key-path %s" "$createCmd" "$sshKeyPath")
   fi
 
-  if [ "$sshKeyValue" != " " ]; then
-  createCmd=$(printf "%s --ssh-key-value %s" "$createCmd" "$sshKeyValue")
+  if [ ! -s /sshKeyValue ]; then
+  createCmd=$(printf "%s --ssh-key-value /sshKeyValue" "$createCmd")
   fi
 
   if [ "$storageAccount" != " " ]; then

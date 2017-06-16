@@ -148,10 +148,9 @@ inputs:
       description: ssh key path for provisioned vm
       default: ' '
   sshKeyValue:
-    string:
-      constraints: { minLength: 1 }
+    file:
       description: ssh key value for provisioned vm
-      default: ' '
+      default: /blank.pub
   storageAccount:
     string:
       constraints: { minLength: 1 }
@@ -212,7 +211,7 @@ run:
   container:
     image: { ref: 'azuresdk/azure-cli-python:0.2.10' }
     cmd: [ /cmd.sh ]
-    files: { /cmd.sh }
+    files: { /cmd.sh, /sshKeyValue: sshKeyValue }
     envVars:
       subscriptionId:
       loginId:
@@ -244,7 +243,6 @@ run:
       publicIpAddressDnsName:
       size:
       sshKeyPath:
-      sshKeyValue:
       storageAccount:
       storageContainerName:
       storageSku:
