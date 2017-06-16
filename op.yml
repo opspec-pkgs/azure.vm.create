@@ -1,0 +1,258 @@
+name: github.com/opspec-pkgs/azure.vm.create
+description: creates an azure vm (if it doesn't already exist)
+inputs:
+  subscriptionId:
+    string:
+      constraints: { minLength: 1 }
+      description: id of azure subscription
+  loginId:
+    string:
+      constraints: { minLength: 1 }
+      description: id of user, service principal, or app to login with
+  loginSecret:
+    string:
+      constraints: { minLength: 1 }
+      description: secret of user, service principal, or app to login with
+      isSecret: true
+  name:
+    string:
+      constraints: { minLength: 1 }
+      description: name for provisioned vm
+  resourceGroup:
+    string:
+      constraints: { minLength: 1 }
+      description: resource group for provisioned vm
+  adminUsername:
+    string:
+      constraints: { minLength: 1 }
+      description: admin username for provisioned vm
+  adminPassword:
+    string:
+      constraints: { minLength: 1 }
+      description: admin password for provisioned vm
+      isSecret: true
+      default: ' '
+  dataDisks:
+    string:
+      constraints: { minLength: 1 }
+      description: data disks (name, id, or URI) to attach to provisioned vm
+      default: ' '
+  osDisk:
+    string:
+      constraints: { minLength: 1 }
+      description: data disk (name, id, or URI) to attach to provisioned vm
+      default: ' '
+  authenticationType:
+    string:
+      constraints: { enum: [password,ssh, ' '] }
+      description: type of authentication for provisioned vm
+      default: ' '
+  availabilitySet:
+    string:
+      constraints: { minLength: 1 }
+      description: availability set (name or id) for provisioned vm
+      default: ' '
+  customData:
+    string:
+      constraints: { minLength: 1 }
+      description: custom init script for provisioned vm
+      default: ' '
+  dataDiskCaching:
+    string:
+      constraints: { enum: [None, ReadOnly, ReadWrite, ' '] }
+      description: data disk caching for provisioned vm
+      default: ' '
+  dataDiskSizes:
+    string:
+      constraints: { minLength: 1, pattern: ^(\d+( \d+)*)| $ }
+      description: space separated data disk sizes (in GB) for provisioned vm
+      default: ' '
+  generateSshKeys:
+    string:
+      constraints: { enum: ['true', 'false'] }
+      description: generate ssh public & private key files for provisioned vm
+      default: 'true'
+  image:
+    string:
+      constraints: { minLength: 1 }
+      description: image (URN alias, URN, custom image name or id, or VHD blob URI)for provisioned vm
+      default: 'CentOS'
+  licenseType:
+    string:
+      constraints: { minLength: 1 }
+      description: license type (N/A to linux) for provisioned vm
+      default: ' '
+  location:
+    string:
+      constraints: { minLength: 1 }
+      description: location for provisioned vm. Defaults is resource group location
+      default: ' '
+  nics:
+    string:
+      constraints: { minLength: 1 }
+      description: nics (names or ids) to attach to provisioned vm
+      default: ' '
+  nsg:
+    string:
+      constraints: { minLength: 1 }
+      description: network security group for provisioned vm
+      default: ' '
+  nsgRule:
+    string:
+      constraints: { enum: [RDP,SSH,' '] }
+      description: network security group rule for provisioned vm. Default is RDP on windows, SSH on linux
+      default: ' '
+  osDiskCaching:
+    string:
+      constraints: { enum: [ReadOnly, ReadWrite, ' '] }
+      description: os disk caching for provisioned vm
+      default: ' '
+  osDiskName:
+    string:
+      constraints: { minLength: 1 }
+      description: name of the OS disk for provisioned vm
+      default: ' '
+  osType:
+    string:
+      constraints: { enum: [linux, windows, ' '] }
+      description: os type (N/A to URN or URN alias images) for provisioned vm
+      default: ' '
+  privateIpAddress:
+    string:
+      constraints: { format: ipv4 }
+      description: static private ip address for provisioned vm
+      default: '0.0.0.0'
+  publicIpAddress:
+    string:
+      constraints: { minLength: 1 }
+      description: public ip address (name or id) for provisioned vm
+      default: ' '
+  publicIpAddressAllocation:
+    string:
+      constraints: { enum: [dynamic, static] }
+      description: public ip address allocation for provisioned vm
+      default: dynamic
+  publicIpAddressDnsName:
+    string:
+      constraints: { minLength: 1 }
+      description: dns name of public ip address for provisioned vm
+      default: ' '
+  size:
+    string:
+      constraints: { minLength: 1 }
+      description: size for provisioned vm
+      default: Standard_DS1_v2
+  sshKeyPath:
+    string:
+      constraints: { minLength: 1 }
+      description: ssh key path for provisioned vm
+      default: ' '
+  sshKeyValue:
+    string:
+      constraints: { minLength: 1 }
+      description: ssh key value for provisioned vm
+      default: ' '
+  storageAccount:
+    string:
+      constraints: { minLength: 1 }
+      description: storage account for provisioned vm.
+      default: ' '
+  storageContainerName:
+    string:
+      constraints: { minLength: 1 }
+      description: storage container name for provisioned vm.
+      default: ' '
+  storageSku:
+    string:
+      constraints: { enum: [Premium_LRS, Standard_GRS, Standard_LRS, Standard_RAGRS, Standard_ZRS] }
+      description: sku of storage account for provisioned vm
+      default: Standard_LRS
+  subnet:
+    string:
+      constraints: { minLength: 1 }
+      description: subnet (name or id) for provisioned vm.
+      default: ' '
+  subnetAddressPrefix:
+    string:
+      constraints: { minLength: 1 }
+      description: subnet IP address prefix (in CIDR format) for provisioned vm.
+      default: 10.0.0.0/24
+  tags:
+    string:
+      constraints: { minLength: 1 }
+      description: space separated tags (in key[=value] format) for provisioned vm.
+      default: ' '
+  isManagedDisk:
+    string:
+      constraints: { enum: ['true', 'false'] }
+      description: whether disk is managed for provisioned vm.
+      default: 'true'
+  vnetAddressPrefix:
+    string:
+      constraints: { minLength: 1 }
+      description: vnet IP address prefix (in CIDR format) for provisioned vm.
+      default: 10.0.0.0/16
+  vnet:
+    string:
+      constraints: { minLength: 1 }
+      description: name of vnet for provisioned vm.
+      default: ' '
+  loginTenantId:
+    string:
+      constraints: { minLength: 1 }
+      description: tenant id of user, service principal, or app to login with
+      default: ' '
+  loginType:
+    string:
+      constraints: { enum: [user, sp]}
+      description: type of login; 'user' (default) or 'sp' for service principal
+      default: user
+version: 1.0.0
+run:
+  container:
+    image: { ref: 'azuresdk/azure-cli-python:0.2.10' }
+    cmd: [ /cmd.sh ]
+    files: { /cmd.sh }
+    envVars:
+      subscriptionId:
+      loginId:
+      loginSecret:
+      name:
+      resourceGroup:
+      adminUsername:
+      adminPassword:
+      dataDisks:
+      osDisk:
+      authenticationType:
+      availabilitySet:
+      customData:
+      dataDiskCaching:
+      dataDiskSizes:
+      generateSshKeys:
+      image:
+      licenseType:
+      location:
+      nics:
+      nsg:
+      nsgRule:
+      osDiskCaching:
+      osDiskName:
+      osType:
+      privateIpAddress:
+      publicIpAddress:
+      publicIpAddressAllocation:
+      publicIpAddressDnsName:
+      size:
+      sshKeyPath:
+      sshKeyValue:
+      storageAccount:
+      storageContainerName:
+      storageSku:
+      subnet:
+      subnetAddressPrefix:
+      tags:
+      isManagedDisk:
+      vnetAddressPrefix:
+      vnet:
+      loginTenantId:
+      loginType:
