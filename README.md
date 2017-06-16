@@ -29,8 +29,8 @@ run:
       loginSecret:
       name:
       resourceGroup:
-      # begin optional args
       adminUsername:
+      # begin optional args
       adminPassword:
       dataDisks:
       osDisk:
