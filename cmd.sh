@@ -24,7 +24,7 @@ az account set --subscription "$subscriptionId"
 ### end login
 
 echo "checking for existing vm"
-if [ "$(az acs list --resource-group "$resourceGroup")" != "[]" ]
+if [ "$(az vm show --resource-group "$resourceGroup" --name "$name")" != "" ]
 then
   echo "found exiting vm"
 else
