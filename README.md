@@ -20,54 +20,53 @@ opctl run github.com/opspec-pkgs/azure.vm.create#VERSION
 ## compose
 
 ```yaml
-run:
-  op:
-    pkg: { ref: github.com/opspec-pkgs/azure.vm.create#VERSION }
-    inputs: 
-      subscriptionId:
-      loginId:
-      loginSecret:
-      name:
-      resourceGroup:
-      adminUsername:
-      # begin optional args
-      adminPassword:
-      dataDisks:
-      osDisk:
-      authenticationType:
-      availabilitySet:
-      customData:
-      dataDiskCaching:
-      dataDiskSizes:
-      generateSshKeys:
-      image:
-      licenseType:
-      location:
-      nics:
-      nsg:
-      nsgRule:
-      osDiskCaching:
-      osDiskName:
-      osType:
-      privateIpAddress:
-      publicIpAddress:
-      publicIpAddressAllocation:
-      publicIpAddressDnsName:
-      size:
-      sshKeyPath:
-      sshKeyValue:
-      storageAccount:
-      storageContainerName:
-      storageSku:
-      subnet:
-      subnetAddressPrefix:
-      tags:
-      isManagedDisk:
-      vnetAddressPrefix:
-      vnet:
-      loginTenantId:
-      loginType:
-      # end optional args
+op:
+  pkg: { ref: github.com/opspec-pkgs/azure.vm.create#VERSION }
+  inputs: 
+    subscriptionId:
+    loginId:
+    loginSecret:
+    name:
+    resourceGroup:
+    adminUsername:
+    # begin optional args
+    adminPassword:
+    dataDisks:
+    osDisk:
+    authenticationType:
+    availabilitySet:
+    customData:
+    dataDiskCaching:
+    dataDiskSizes:
+    generateSshKeys:
+    image:
+    licenseType:
+    location:
+    nics:
+    nsg:
+    nsgRule:
+    osDiskCaching:
+    osDiskName:
+    osType:
+    privateIpAddress:
+    publicIpAddress:
+    publicIpAddressAllocation:
+    publicIpAddressDnsName:
+    size:
+    sshKeyPath:
+    sshKeyValue:
+    storageAccount:
+    storageContainerName:
+    storageSku:
+    subnet:
+    subnetAddressPrefix:
+    tags:
+    isManagedDisk:
+    vnetAddressPrefix:
+    vnet:
+    loginTenantId:
+    loginType:
+    # end optional args
 ```
 
 # Support
